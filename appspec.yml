@@ -9,13 +9,13 @@ files:
 #CodeDeployが動作する間に任意の行為を実行
 hooks:    
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
+    - location: scripts/install_dependencies
       timeout: 300
       runas: root
-    - location: scripts/start_server.sh
+    - location: scripts/start_server
       timeout: 300
       runas: root
   ApplicationStop:
-    - location: scripts/stop_server.sh
+    - location: scripts/stop_server
       timeout: 300
       runas: root
