@@ -1,0 +1,21 @@
+#CodeDeployがどのようにファイルを配置するかを定めたファイル
+
+version: 0.0
+os: linux
+files:
+    - source: /index.html     #同期するファイル  
+      destination: /var/www/html/     #EC2のどこに同期させるか
+
+#CodeDeployが動作する間に任意の行為を実行
+hooks:    
+  BeforeInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: root
+    - location: scripts/start_server.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 300
+      runas: root
